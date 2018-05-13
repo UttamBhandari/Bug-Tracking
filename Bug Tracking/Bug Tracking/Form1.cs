@@ -16,5 +16,6 @@ namespace Bug_Tracking
         {
             InitializeComponent();
         }
+
     }
 }

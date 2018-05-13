@@ -1,1 +1,9 @@
 E:\The British College\C#\HW\Bug Tracking\Bug Tracking\bin\Debug\Bug Tracking.exe.config
+E:\The British College\C#\HW\Bug Tracking\Bug Tracking\bin\Debug\Bug Tracking.exe
+E:\The British College\C#\HW\Bug Tracking\Bug Tracking\bin\Debug\Bug Tracking.pdb
+E:\The British College\C#\HW\Bug Tracking\Bug Tracking\obj\Debug\Bug Tracking.csprojResolveAssemblyReference.cache
+E:\The British College\C#\HW\Bug Tracking\Bug Tracking\obj\Debug\Bug_Tracking.Form1.resources
+E:\The British College\C#\HW\Bug Tracking\Bug Tracking\obj\Debug\Bug_Tracking.Properties.Resources.resources
+E:\The British College\C#\HW\Bug Tracking\Bug Tracking\obj\Debug\Bug Tracking.csproj.GenerateResource.Cache
+E:\The British College\C#\HW\Bug Tracking\Bug Tracking\obj\Debug\Bug Tracking.exe
+E:\The British College\C#\HW\Bug Tracking\Bug Tracking\obj\Debug\Bug Tracking.pdb
