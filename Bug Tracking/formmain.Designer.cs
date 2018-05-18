@@ -34,6 +34,7 @@
             this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewUsersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainpanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +63,8 @@
             // 
             this.userToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addUserToolStripMenuItem,
-            this.viewUsersToolStripMenuItem});
+            this.viewUsersToolStripMenuItem,
+            this.editUserToolStripMenuItem});
             this.userToolStripMenuItem.Name = "userToolStripMenuItem";
             this.userToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.userToolStripMenuItem.Text = "User";
@@ -84,6 +86,12 @@
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.logoutToolStripMenuItem.Text = "Logout";
+            // 
+            // editUserToolStripMenuItem
+            // 
+            this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
+            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editUserToolStripMenuItem.Text = "Edit User";
             // 
             // formmain
             // 
@@ -110,5 +118,6 @@
         private System.Windows.Forms.ToolStripMenuItem addUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewUsersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editUserToolStripMenuItem;
     }
 }

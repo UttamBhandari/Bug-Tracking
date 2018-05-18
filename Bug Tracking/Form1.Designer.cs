@@ -29,13 +29,16 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.cmbusertype = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.pwdtxtbox = new System.Windows.Forms.TextBox();
             this.nametxtbox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbusertype = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,6 +46,9 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.panel1.BackgroundImage = global::Bug_Tracking.Properties.Resources.copy;
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.cmbusertype);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.button1);
@@ -54,6 +60,35 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(478, 322);
             this.panel1.TabIndex = 0;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(331, 208);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(381, 280);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Admin Login";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // cmbusertype
+            // 
+            this.cmbusertype.FormattingEnabled = true;
+            this.cmbusertype.Location = new System.Drawing.Point(241, 72);
+            this.cmbusertype.Name = "cmbusertype";
+            this.cmbusertype.Size = new System.Drawing.Size(165, 21);
+            this.cmbusertype.TabIndex = 13;
+            this.cmbusertype.Text = "Choose User";
             // 
             // label3
             // 
@@ -70,12 +105,13 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(241, 185);
+            this.button1.Location = new System.Drawing.Point(241, 208);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(66, 25);
             this.button1.TabIndex = 11;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pwdtxtbox
             // 
@@ -113,14 +149,13 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "User Name:";
             // 
-            // cmbusertype
+            // label4
             // 
-            this.cmbusertype.FormattingEnabled = true;
-            this.cmbusertype.Location = new System.Drawing.Point(241, 72);
-            this.cmbusertype.Name = "cmbusertype";
-            this.cmbusertype.Size = new System.Drawing.Size(165, 21);
-            this.cmbusertype.TabIndex = 13;
-            this.cmbusertype.Text = "Choose User";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(238, 181);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 16;
             // 
             // Form1
             // 
@@ -146,6 +181,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbusertype;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -10,12 +10,16 @@ using System.Windows.Forms;
 
 namespace Bug_Tracking
 {
-    public partial class Form1 : Form
+    public partial class addbug : Form
     {
-        public Form1()
+        public addbug()
         {
             InitializeComponent();
         }
 
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
