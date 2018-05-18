@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.exit = new System.Windows.Forms.Button();
+            this.createuser = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -37,9 +40,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.createuser = new System.Windows.Forms.Button();
-            this.exit = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +60,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(439, 315);
             this.panel1.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label5.Location = new System.Drawing.Point(89, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(199, 37);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Create User";
+            // 
+            // exit
+            // 
+            this.exit.Location = new System.Drawing.Point(229, 182);
+            this.exit.Name = "exit";
+            this.exit.Size = new System.Drawing.Size(75, 23);
+            this.exit.TabIndex = 17;
+            this.exit.Text = "Cancel";
+            this.exit.UseVisualStyleBackColor = true;
+            // 
+            // createuser
+            // 
+            this.createuser.Location = new System.Drawing.Point(148, 182);
+            this.createuser.Name = "createuser";
+            this.createuser.Size = new System.Drawing.Size(75, 23);
+            this.createuser.TabIndex = 16;
+            this.createuser.Text = "Create";
+            this.createuser.UseVisualStyleBackColor = true;
+            this.createuser.Click += new System.EventHandler(this.createuser_Click);
             // 
             // comboBox1
             // 
@@ -126,35 +156,6 @@
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "Full Name:";
-            // 
-            // createuser
-            // 
-            this.createuser.Location = new System.Drawing.Point(148, 182);
-            this.createuser.Name = "createuser";
-            this.createuser.Size = new System.Drawing.Size(75, 23);
-            this.createuser.TabIndex = 16;
-            this.createuser.Text = "Create";
-            this.createuser.UseVisualStyleBackColor = true;
-            // 
-            // exit
-            // 
-            this.exit.Location = new System.Drawing.Point(229, 182);
-            this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(75, 23);
-            this.exit.TabIndex = 17;
-            this.exit.Text = "Cancel";
-            this.exit.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label5.Location = new System.Drawing.Point(89, 8);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(199, 37);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Create User";
             // 
             // adduser
             // 

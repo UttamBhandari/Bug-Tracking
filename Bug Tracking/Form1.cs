@@ -72,6 +72,7 @@ namespace Bug_Tracking
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide();
             adminlogin adfm = new adminlogin();
             adfm.Show();
         }

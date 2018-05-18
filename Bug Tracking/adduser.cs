@@ -21,5 +21,10 @@ namespace Bug_Tracking
         {
 
         }
+
+        private void createuser_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
