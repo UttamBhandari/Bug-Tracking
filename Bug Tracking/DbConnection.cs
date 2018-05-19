@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace Bug_Tracking
+namespace Bug_Tracker
 {
-    class DbConnection
+    /**
+     * used to connect to database
+     * 
+     * */
+    class DBConnection
     {
-        private string connString = ConfigurationManager.ConnStrings["connectionstr"].ConnString;
+        /**The Connection String includes parameters such as the name of the driver, 
+         * Server name and Database name , as well as security information such as user name and password. 
+         * 
+         * 'connectionstr' is defined in App.config
+         * */
+        private string connectionString = ConfigurationManager.ConnectionStrings["connectionstr"].ConnectionString;
 
         /// <summary>
         /// connects sql query with connection string
@@ -19,7 +28,7 @@ namespace Bug_Tracking
         /// <returns>SqlConnection</returns>
         public SqlConnection GetConnection()
         {
-            return new SqlConnection(connString);
-        }   
+            return new SqlConnection(connectionString);
+        }
     }
 }

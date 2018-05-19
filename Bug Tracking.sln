@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bug Tracking", "Bug Tracking\Bug Tracking.csproj", "{6E51A178-8927-4115-B346-98CFBA8F3A8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bug-Tracking", "Bug Tracker\Bug-Tracking.csproj", "{A57792F4-9053-4212-96F3-5CA54406B03D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6E51A178-8927-4115-B346-98CFBA8F3A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E51A178-8927-4115-B346-98CFBA8F3A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E51A178-8927-4115-B346-98CFBA8F3A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E51A178-8927-4115-B346-98CFBA8F3A8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A57792F4-9053-4212-96F3-5CA54406B03D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A57792F4-9053-4212-96F3-5CA54406B03D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A57792F4-9053-4212-96F3-5CA54406B03D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A57792F4-9053-4212-96F3-5CA54406B03D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F6240799-0E4F-4C82-A27B-C2BDF6C8A3AA}
 	EndGlobalSection
 EndGlobal

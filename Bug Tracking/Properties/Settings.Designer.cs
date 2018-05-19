@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Bug_Tracking.Properties
+namespace Bug_Tracker.Properties
 {
 
 
