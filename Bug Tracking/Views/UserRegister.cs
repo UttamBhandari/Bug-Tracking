@@ -52,7 +52,7 @@ namespace Bug_Tracker.Views
                 }
                 else
                 {
-                    Tester p = new Tester { TesterId = 0, FullName = name, Username = username, Password = password };
+                    Tester p = new Tester { TesterId = 0, Full_name = name, Username = username, Password = password };
                     try
                     {
                         new TesterDAO().Insert(p);

@@ -65,7 +65,7 @@ namespace Bug_Tracker.DAO
             Bug bug = null;
             SourceCode code = null;
             BugImage image = null;
-            SourceLink sourceControl = null;
+            ControlLink sourceControl = null;
 
             try
             {
@@ -82,7 +82,7 @@ namespace Bug_Tracker.DAO
                         bug = new Bug();
                         code = new SourceCode();
                         image = new BugImage();
-                        sourceControl = new SourceLink();
+                        sourceControl = new ControlLink();
 
                         bug.BugId = Convert.ToInt32(reader["bug_id"]);
                         bug.ProjectName = Convert.ToString(reader["project_name"]);
@@ -94,9 +94,9 @@ namespace Bug_Tracker.DAO
                         bug.Status = Convert.ToString(reader["bug_status"]);
 
                         code.CodeId = Convert.ToInt32(reader["code_id"]);
-                        code.CodeFilePath = Convert.ToString(reader["code_file_path"]);
+                        code.CodePath = Convert.ToString(reader["code_file_path"]);
                         code.CodeFileName = Convert.ToString(reader["code_file_name"]);
-                        code.ProgrammingLanguage = Convert.ToString(reader["programming_language"]);
+                        code.Language = Convert.ToString(reader["programming_language"]);
                         code.BugId = Convert.ToInt32(reader["bug_id"]);
 
                         image.ImageId = Convert.ToInt32(reader["image_id"]);
@@ -104,8 +104,8 @@ namespace Bug_Tracker.DAO
                         image.ImageName = Convert.ToString(reader["image_name"]);
                         image.BugId = Convert.ToInt32(reader["bug_id"]);
 
-                        sourceControl.SourceControlId = Convert.ToInt32(reader["source_control_id"]);
-                        sourceControl.Link = reader["link"].ToString();
+                        sourceControl.LinkID = Convert.ToInt32(reader["source_control_id"]);
+                        sourceControl.CodeLink = reader["link"].ToString();
                         sourceControl.StartLine = Convert.ToInt32(reader["start_line"]);
                         sourceControl.EndLine = Convert.ToInt32(reader["end_line"]);
                         sourceControl.BugId = Convert.ToInt32(reader["bug_id"]);
@@ -220,7 +220,7 @@ namespace Bug_Tracker.DAO
             Bug bug = null;
             SourceCode code = null;
             BugImage image = null;
-            SourceLink sourceControl = null;
+            ControlLink sourceControl = null;
 
             try
             {
@@ -236,7 +236,7 @@ namespace Bug_Tracker.DAO
                         bug = new Bug();
                         code = new SourceCode();
                         image = new BugImage();
-                        sourceControl = new SourceLink();
+                        sourceControl = new ControlLink();
 
                         bug.BugId = Convert.ToInt32(reader["bug_id"]);
                         bug.ProjectName = Convert.ToString(reader["project_name"]);
@@ -248,9 +248,9 @@ namespace Bug_Tracker.DAO
                         bug.Status = Convert.ToString(reader["bug_status"]);
 
                         code.CodeId = Convert.ToInt32(reader["code_id"]);
-                        code.CodeFilePath = Convert.ToString(reader["code_file_path"]);
+                        code.CodePath = Convert.ToString(reader["code_file_path"]);
                         code.CodeFileName = Convert.ToString(reader["code_file_name"]);
-                        code.ProgrammingLanguage = Convert.ToString(reader["programming_language"]);
+                        code.Language = Convert.ToString(reader["programming_language"]);
                         code.BugId = Convert.ToInt32(reader["bug_id"]);
 
                         image.ImageId = Convert.ToInt32(reader["image_id"]);
@@ -258,8 +258,8 @@ namespace Bug_Tracker.DAO
                         image.ImageName = Convert.ToString(reader["image_name"]);
                         image.BugId = Convert.ToInt32(reader["bug_id"]);
 
-                        sourceControl.SourceControlId = Convert.ToInt32(reader["source_control_id"]);
-                        sourceControl.Link = reader["link"].ToString();
+                        sourceControl.LinkID = Convert.ToInt32(reader["source_control_id"]);
+                        sourceControl.CodeLink = reader["link"].ToString();
                         sourceControl.StartLine = Convert.ToInt32(reader["start_line"]);
                         sourceControl.EndLine = Convert.ToInt32(reader["end_line"]);
                         sourceControl.BugId = Convert.ToInt32(reader["bug_id"]);
@@ -299,7 +299,7 @@ namespace Bug_Tracker.DAO
             Bug bug = null;
             SourceCode code = null;
             BugImage image = null;
-            SourceLink sourceControl = null;
+            ControlLink sourceControl = null;
 
             try
             {
@@ -316,7 +316,7 @@ namespace Bug_Tracker.DAO
                         bug = new Bug();
                         code = new SourceCode();
                         image = new BugImage();
-                        sourceControl = new SourceLink();
+                        sourceControl = new ControlLink();
 
                         bug.BugId = Convert.ToInt32(reader["bug_id"]);
                         bug.ProjectName = Convert.ToString(reader["project_name"]);
@@ -328,9 +328,9 @@ namespace Bug_Tracker.DAO
                         bug.Status = Convert.ToString(reader["bug_status"]);
 
                         code.CodeId = Convert.ToInt32(reader["code_id"]);
-                        code.CodeFilePath = Convert.ToString(reader["code_file_path"]);
+                        code.CodePath = Convert.ToString(reader["code_file_path"]);
                         code.CodeFileName = Convert.ToString(reader["code_file_name"]);
-                        code.ProgrammingLanguage = Convert.ToString(reader["programming_language"]);
+                        code.Language = Convert.ToString(reader["programming_language"]);
                         code.BugId = Convert.ToInt32(reader["bug_id"]);
 
                         image.ImageId = Convert.ToInt32(reader["image_id"]);
@@ -338,8 +338,8 @@ namespace Bug_Tracker.DAO
                         image.ImageName = Convert.ToString(reader["image_name"]);
                         image.BugId = Convert.ToInt32(reader["bug_id"]);
 
-                        sourceControl.SourceControlId = Convert.ToInt32(reader["source_control_id"]);
-                        sourceControl.Link = reader["link"].ToString();
+                        sourceControl.LinkID = Convert.ToInt32(reader["source_control_id"]);
+                        sourceControl.CodeLink = reader["link"].ToString();
                         sourceControl.StartLine = Convert.ToInt32(reader["start_line"]);
                         sourceControl.EndLine = Convert.ToInt32(reader["end_line"]);
                         sourceControl.BugId = Convert.ToInt32(reader["bug_id"]);

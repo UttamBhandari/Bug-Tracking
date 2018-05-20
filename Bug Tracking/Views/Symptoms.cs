@@ -27,11 +27,11 @@ namespace Bug_Tracker.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BugInformationDAO bugInformationDAO = new BugInformationDAO();
-            BugInformation bugInformation = new BugInformation
+            BugInfoDAO bugInformationDAO = new BugInfoDAO();
+            BugInfo bugInformation = new BugInfo
             {
                 Cause = textBox2.Text,
-                Symtons = textBox1.Text,
+                Symptoms = textBox1.Text,
                 BugId = Program.bugId
             };
 
@@ -56,14 +56,14 @@ namespace Bug_Tracker.Views
 
         private void SymptonsAndAssign_Load(object sender, EventArgs e)
         {
-            BugInformationDAO bugInformationDAO = new BugInformationDAO();
-            BugInformation bugInformation = bugInformationDAO.GetById(Program.bugId);
+            BugInfoDAO bugInformationDAO = new BugInfoDAO();
+            BugInfo bugInformation = bugInformationDAO.GetById(Program.bugId);
 
             if (bugInformation != null)
             {
                 button1.Hide();
                 button2.Show();
-                textBox1.Text = bugInformation.Symtons;
+                textBox1.Text = bugInformation.Symptoms;
                 textBox2.Text = bugInformation.Cause;
             }
             else
@@ -100,11 +100,11 @@ namespace Bug_Tracker.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            BugInformationDAO bugInformationDAO = new BugInformationDAO();
-            BugInformation bugInformation = new BugInformation
+            BugInfoDAO bugInformationDAO = new BugInfoDAO();
+            BugInfo bugInformation = new BugInfo
             {
                 Cause = textBox2.Text,
-                Symtons = textBox1.Text,
+                Symptoms = textBox1.Text,
                 BugId = Program.bugId
             };
 

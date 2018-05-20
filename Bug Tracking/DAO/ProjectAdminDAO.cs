@@ -38,7 +38,7 @@ namespace Bug_Tracker.DAO
                 sql.Transaction = transaction;
                 sql.CommandText = "INSERT INTO table_admin VALUES(@company_name, @username, @password)";
                 sql.Prepare();
-                sql.Parameters.AddWithValue("@company_name", t.CompanyName);
+                sql.Parameters.AddWithValue("@company_name", t.Organization);
                 sql.Parameters.AddWithValue("@username", t.Username);
                 sql.Parameters.AddWithValue("@password", t.Password);
 

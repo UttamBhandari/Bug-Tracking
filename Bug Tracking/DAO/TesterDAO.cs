@@ -56,7 +56,7 @@ namespace Bug_Tracker.DAO
                 query.Transaction = transaction;
                 query.CommandText = "INSERT INTO table_tester VALUES(@fullName, @username, @password)";
                 query.Prepare();
-                query.Parameters.AddWithValue("@fullName", t.FullName);
+                query.Parameters.AddWithValue("@fullName", t.Full_name);
                 query.Parameters.AddWithValue("@username", t.Username);
                 query.Parameters.AddWithValue("@password", t.Password);
 

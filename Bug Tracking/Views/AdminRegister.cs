@@ -27,7 +27,7 @@ namespace Bug_Tracker.Views
 
             Bug_Tracker.Model.ProjectAdmin admin = new Bug_Tracker.Model.ProjectAdmin
             {
-                CompanyName = companyName,
+                Organization = companyName,
                 Username = username,
                 Password = password
             };

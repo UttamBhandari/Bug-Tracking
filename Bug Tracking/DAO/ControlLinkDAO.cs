@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bug_Tracker.DAO
 {
-    class SourceControlDAO : GenericDAO<SourceLink>
+    class ControlLinkDAO : GenericDAO<ControlLink>
     {
         private SqlConnection connection = new DBConnection().GetConnection();
 
@@ -41,17 +41,17 @@ namespace Bug_Tracker.DAO
             }
         }
 
-        public List<SourceLink> GetAll()
+        public List<ControlLink> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public SourceLink GetById(int id)
+        public ControlLink GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(SourceLink t)
+        public void Insert(ControlLink t)
         {
             connection.Open();
             SqlTransaction transaction = connection.BeginTransaction();
@@ -62,7 +62,7 @@ namespace Bug_Tracker.DAO
                 query.Transaction = transaction;
                 query.CommandText = "INSERT INTO table_source_control VALUES(@link, @start_line, @end_line, @bug_id)";
                 query.Prepare();
-                query.Parameters.AddWithValue("@link", t.Link);
+                query.Parameters.AddWithValue("@link", t.CodeLink);
                 query.Parameters.AddWithValue("@start_line", t.StartLine);
                 query.Parameters.AddWithValue("@end_line", t.EndLine);
                 query.Parameters.AddWithValue("@bug_id", t.BugId);
@@ -82,7 +82,7 @@ namespace Bug_Tracker.DAO
             }
         }
 
-        public void Update(SourceLink t)
+        public void Update(ControlLink t)
         {
             connection.Open();
             SqlTransaction transaction = connection.BeginTransaction();
@@ -93,7 +93,7 @@ namespace Bug_Tracker.DAO
                 query.Transaction = transaction;
                 query.CommandText = "UPDATE table_source_control SET link = @link, start_line = @start_line, end_line = @end_line WHERE bug_id = @bug_id;";
                 query.Prepare();
-                query.Parameters.AddWithValue("@link", t.Link);
+                query.Parameters.AddWithValue("@link", t.CodeLink);
                 query.Parameters.AddWithValue("@start_line", t.StartLine);
                 query.Parameters.AddWithValue("@end_line", t.EndLine);
                 query.Parameters.AddWithValue("@bug_id", t.BugId);

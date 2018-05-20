@@ -63,9 +63,9 @@ namespace Bug_Tracker.DAO
                 query.Transaction = transaction;
                 query.CommandText = "INSERT INTO table_code VALUES(@filepath, @filename, @plan, @bug_id)";
                 query.Prepare();
-                query.Parameters.AddWithValue("@filepath", t.CodeFilePath);
+                query.Parameters.AddWithValue("@filepath", t.CodePath);
                 query.Parameters.AddWithValue("@filename", t.CodeFileName);
-                query.Parameters.AddWithValue("@plan", t.ProgrammingLanguage);
+                query.Parameters.AddWithValue("@plan", t.Language);
                 query.Parameters.AddWithValue("@bug_id", t.BugId);
 
                 query.ExecuteNonQuery();

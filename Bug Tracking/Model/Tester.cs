@@ -12,7 +12,7 @@ namespace Bug_Tracker.Model
     class Tester
     {
         public int TesterId { get; set; }
-        public string FullName { get; set; }
+        public string Full_name { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
     }

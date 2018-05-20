@@ -127,10 +127,10 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(142, 243);
+            this.textBox3.Location = new System.Drawing.Point(117, 243);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(362, 129);
+            this.textBox3.Size = new System.Drawing.Size(387, 129);
             this.textBox3.TabIndex = 9;
             // 
             // listBox1

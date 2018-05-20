@@ -74,7 +74,7 @@
     <Compile Include="DAO\ProjectAdminDAO.cs" />
     <Compile Include="DAO\ProjectAssignDAO.cs" />
     <Compile Include="DAO\BugDAO.cs" />
-    <Compile Include="DAO\BugInformationDAO.cs" />
+    <Compile Include="DAO\BugInfoDAO.cs" />
     <Compile Include="DAO\SourceCodeDAO.cs" />
     <Compile Include="DAO\FixerDAO.cs" />
     <Compile Include="DAO\GenericDAO.cs" />
@@ -82,7 +82,7 @@
     <Compile Include="DAO\ProgrammerDAO.cs" />
     <Compile Include="DAO\ProjectDAO.cs" />
     <Compile Include="DAO\ProjectProgrammerDAO.cs" />
-    <Compile Include="DAO\SourceControlDAO.cs" />
+    <Compile Include="DAO\ControlLinkDAO.cs" />
     <Compile Include="DAO\TesterDAO.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="Form1.cs">
@@ -95,14 +95,14 @@
     <Compile Include="Model\ProjectAssign.cs" />
     <Compile Include="Model\Bug.cs" />
     <Compile Include="Model\BugHistory.cs" />
-    <Compile Include="Model\BugInformation.cs" />
+    <Compile Include="Model\BugInfo.cs" />
     <Compile Include="Model\SourceCode.cs" />
     <Compile Include="Model\Fixer.cs" />
     <Compile Include="Model\BugImage.cs" />
     <Compile Include="Model\Programmer.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\ProjectProgrammer.cs" />
-    <Compile Include="Model\SourceLink.cs" />
+    <Compile Include="Model\ControlLink.cs" />
     <Compile Include="Model\Tester.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -166,11 +166,11 @@
     <Compile Include="Views\UserRegister.Designer.cs">
       <DependentUpon>UserRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\SymptonsAndAssign.cs">
+    <Compile Include="Views\Symptoms.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\SymptonsAndAssign.Designer.cs">
-      <DependentUpon>SymptonsAndAssign.cs</DependentUpon>
+    <Compile Include="Views\Symptoms.Designer.cs">
+      <DependentUpon>Symptoms.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\TesterDashboard.cs">
       <SubType>Form</SubType>
@@ -227,8 +227,8 @@
     <EmbeddedResource Include="Views\UserRegister.resx">
       <DependentUpon>UserRegister.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\SymptonsAndAssign.resx">
-      <DependentUpon>SymptonsAndAssign.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Symptoms.resx">
+      <DependentUpon>Symptoms.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TesterDashboard.resx">
       <DependentUpon>TesterDashboard.cs</DependentUpon>

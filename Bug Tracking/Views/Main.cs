@@ -366,9 +366,9 @@ namespace Bug_Tracker.Views
 
                 SourceCode code = new SourceCode
                 {
-                    CodeFilePath = "code",
+                    CodePath = "code",
                     CodeFileName = codeFileName,
-                    ProgrammingLanguage = programminLanguage,
+                    Language = programminLanguage,
                     BugId = bug.BugId
                 };
 
@@ -398,15 +398,15 @@ namespace Bug_Tracker.Views
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 ////Link
 
-                Model.SourceLink sourceControl = new Model.SourceLink
+                Model.ControlLink sourceControl = new Model.ControlLink
                 {
-                    Link = textBox1.Text,
+                    CodeLink = textBox1.Text,
                     StartLine = Convert.ToInt32(textBox6.Text),
                     EndLine = Convert.ToInt32(textBox7.Text),
                     BugId = bug.BugId
                 };
 
-                DAO.SourceControlDAO sourceControlDAO = new DAO.SourceControlDAO();
+                DAO.ControlLinkDAO sourceControlDAO = new DAO.ControlLinkDAO();
 
                 try
                 {

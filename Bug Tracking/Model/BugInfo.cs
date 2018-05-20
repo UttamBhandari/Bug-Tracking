@@ -9,11 +9,11 @@ namespace Bug_Tracker.Model
     /// <summary>
     /// model to save about bug information
     /// </summary>
-    class BugInformation
+    class BugInfo
     {
-        public int? InformationId { get; set; }
+        public int? BugInfoID { get; set; }
         public int BugId { get; set; }
         public string Cause { get; set; }
-        public string Symtons { get; set; }
+        public string Symptoms { get; set; }
     }
 }

@@ -66,20 +66,20 @@ namespace Bug_Tracker.Views
             textBox3.Text = bug.MethodName;
             textBox4.Text = bug.StartLine.ToString();
             textBox5.Text = bug.EndLine.ToString();
-            programminLanguage = bug.Codes.ProgrammingLanguage;
+            programminLanguage = bug.Codes.Language;
             currentImageName = bug.Images.ImageName;
             codeFileName = bug.Codes.CodeFileName;
             //assiging related table's id
             bugId = bug.BugId;
             codeId = bug.Codes.CodeId;
             imageId = bug.Images.ImageId;
-            linkLabel1.Text = bug.SourceControl.Link;
+            linkLabel1.Text = bug.SourceControl.CodeLink;
 
             /*
              *Open the file to read from.
              * reading text from code file
              */
-            string path = bug.Codes.CodeFilePath + "/" + bug.Codes.CodeFileName + ".txt";
+            string path = bug.Codes.CodePath + "/" + bug.Codes.CodeFileName + ".txt";
             using (StreamReader sr = File.OpenText(path))
             {
                 string s = "";
@@ -90,7 +90,7 @@ namespace Bug_Tracker.Views
             }
 
             //assigning programming language for text box
-            string programmingLanguage = bug.Codes.ProgrammingLanguage;
+            string programmingLanguage = bug.Codes.Language;
 
             if (programmingLanguage == "CSharp")
             {
@@ -241,7 +241,7 @@ namespace Bug_Tracker.Views
         {
             BugImageDAO imageDAO = new BugImageDAO();
             SourceCodeDAO codeDAO = new SourceCodeDAO();
-            SourceControlDAO sourceControl = new SourceControlDAO();
+            ControlLinkDAO sourceControl = new ControlLinkDAO();
             BugDAO bugDAO = new BugDAO();
 
             DialogResult dr = MessageBox.Show("Are you sure want to delete this bug?", "Are you sure", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
@@ -272,13 +272,13 @@ namespace Bug_Tracker.Views
 
         private void button4_Click(object sender, EventArgs e)
         {
-            new SymptonsAndAssign().Show();
+            new Symptoms().Show();
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             string codeFileName = bug.Codes.CodeFileName;
-            string codeFilePath = bug.Codes.CodeFilePath;
+            string codeFilePath = bug.Codes.CodePath;
             string c = fastColoredTextBox1.Text;
 
             FixerDAO fixerDAO = new FixerDAO();

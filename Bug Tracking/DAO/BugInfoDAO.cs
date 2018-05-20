@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bug_Tracker.DAO
 {
-    class BugInformationDAO : GenericDAO<BugInformation>
+    class BugInfoDAO : GenericDAO<BugInfo>
     {
         private SqlConnection connection = new DBConnection().GetConnection();
 
@@ -17,15 +17,15 @@ namespace Bug_Tracker.DAO
             throw new NotImplementedException();
         }
 
-        public List<BugInformation> GetAll()
+        public List<BugInfo> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public BugInformation GetById(int id)
+        public BugInfo GetById(int id)
         {
             connection.Open();
-            BugInformation p = null;
+            BugInfo p = null;
 
             try
             {
@@ -38,11 +38,11 @@ namespace Bug_Tracker.DAO
                     while (reader.Read())
                     {
 
-                        p = new BugInformation
+                        p = new BugInfo
                         {
-                            InformationId = Convert.ToInt32(reader["bug_information_id"]),
+                            BugInfoID = Convert.ToInt32(reader["bug_information_id"]),
                             Cause = reader["cause"].ToString(),
-                            Symtons = reader["symptons"].ToString(),
+                            Symptoms = reader["symptons"].ToString(),
                             BugId = Convert.ToInt32(reader["bug_id"])
                         };
                     }
@@ -60,7 +60,7 @@ namespace Bug_Tracker.DAO
             return p;
         }
 
-        public void Insert(BugInformation t)
+        public void Insert(BugInfo t)
         {
             connection.Open();
             SqlTransaction transaction = connection.BeginTransaction();
@@ -71,7 +71,7 @@ namespace Bug_Tracker.DAO
                 query.Transaction = transaction;
                 query.CommandText = "INSERT INTO table_bug_information VALUES(@symptons, @cause, @bug_id)";
                 query.Prepare();
-                query.Parameters.AddWithValue("@symptons", t.Symtons);
+                query.Parameters.AddWithValue("@symptons", t.Symptoms);
                 query.Parameters.AddWithValue("@cause", t.Cause);
                 query.Parameters.AddWithValue("@bug_id", t.BugId);
 
@@ -90,7 +90,7 @@ namespace Bug_Tracker.DAO
             }
         }
 
-        public void Update(BugInformation t)
+        public void Update(BugInfo t)
         {
             connection.Open();
             SqlTransaction transaction = connection.BeginTransaction();
@@ -101,7 +101,7 @@ namespace Bug_Tracker.DAO
                 query.Transaction = transaction;
                 query.CommandText = "UPDATE table_bug_information SET symptons = @symptons, cause = @cause WHERE bug_id = @bug_id";
                 query.Prepare();
-                query.Parameters.AddWithValue("@symptons", t.Symtons);
+                query.Parameters.AddWithValue("@symptons", t.Symptoms);
                 query.Parameters.AddWithValue("@cause", t.Cause);
                 query.Parameters.AddWithValue("@bug_id", t.BugId);
 

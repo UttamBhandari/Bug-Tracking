@@ -12,9 +12,9 @@ namespace Bug_Tracker.Model
     class SourceCode
     {
         public int CodeId { get; set; }
-        public string CodeFilePath { get; set; }
+        public string CodePath { get; set; }
         public string CodeFileName { get; set; }
-        public string ProgrammingLanguage { get; set; }
+        public string Language { get; set; }
         public int BugId { get; set; }
     }
 }
