@@ -61,16 +61,16 @@ namespace Bug_Tracker.DAO
         public Bug GetById(int id)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
             Bug bug = null;
             SourceCode code = null;
             BugImage image = null;
-            SourceControl sourceControl = null;
+            SourceLink sourceControl = null;
 
             try
             {
                 SqlCommand query = new SqlCommand(null, connection);
-                query.Transaction = trans;
+                query.Transaction = transaction;
                 query.CommandText = "SELECT * FROM table_bug b JOIN table_code c ON b.bug_id = c.bug_id JOIN table_image i ON b.bug_id = i.bug_id JOIN table_source_control sc ON sc.bug_id = i.bug_id WHERE bug_status = 0 AND b.bug_id = @id;";
                 query.Prepare();
                 query.Parameters.AddWithValue("@id", id);
@@ -82,7 +82,7 @@ namespace Bug_Tracker.DAO
                         bug = new Bug();
                         code = new SourceCode();
                         image = new BugImage();
-                        sourceControl = new SourceControl();
+                        sourceControl = new SourceLink();
 
                         bug.BugId = Convert.ToInt32(reader["bug_id"]);
                         bug.ProjectName = Convert.ToString(reader["project_name"]);
@@ -138,31 +138,31 @@ namespace Bug_Tracker.DAO
         public void Insert(Bug t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "INSERT INTO table_bug VALUES(@projectname, @classname, @methodname, @startline, @endline, @codeauthor, @status); SELECT SCOPE_IDENTITY()";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@projectname", t.ProjectName);
-                sql.Parameters.AddWithValue("@classname", t.ClassName);
-                sql.Parameters.AddWithValue("@methodname", t.MethodName);
-                sql.Parameters.AddWithValue("@startline", t.StartLine);
-                sql.Parameters.AddWithValue("@endline", t.EndLine);
-                sql.Parameters.AddWithValue("@codeauthor", t.ProgrammerId);
-                sql.Parameters.AddWithValue("@status", t.Status);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "INSERT INTO table_bug VALUES(@projectname, @classname, @methodname, @startline, @endline, @codeauthor, @status); SELECT SCOPE_IDENTITY()";
+                query.Prepare();
+                query.Parameters.AddWithValue("@projectname", t.ProjectName);
+                query.Parameters.AddWithValue("@classname", t.ClassName);
+                query.Parameters.AddWithValue("@methodname", t.MethodName);
+                query.Parameters.AddWithValue("@startline", t.StartLine);
+                query.Parameters.AddWithValue("@endline", t.EndLine);
+                query.Parameters.AddWithValue("@codeauthor", t.ProgrammerId);
+                query.Parameters.AddWithValue("@status", t.Status);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                t.BugId = Convert.ToInt32(sql.ExecuteScalar());
+                t.BugId = Convert.ToInt32(query.ExecuteScalar());
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -178,28 +178,28 @@ namespace Bug_Tracker.DAO
         public void Update(Bug t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "UPDATE table_bug SET project_name = @projectname, class_name = @classname, method_name = @methodname, start_line = @startline, end_line = @endline WHERE bug_id=@bug_id;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@projectname", t.ProjectName);
-                sql.Parameters.AddWithValue("@classname", t.ClassName);
-                sql.Parameters.AddWithValue("@methodname", t.MethodName);
-                sql.Parameters.AddWithValue("@startline", t.StartLine);
-                sql.Parameters.AddWithValue("@endline", t.EndLine);
-                sql.Parameters.AddWithValue("@bug_id", t.BugId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "UPDATE table_bug SET project_name = @projectname, class_name = @classname, method_name = @methodname, start_line = @startline, end_line = @endline WHERE bug_id=@bug_id;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@projectname", t.ProjectName);
+                query.Parameters.AddWithValue("@classname", t.ClassName);
+                query.Parameters.AddWithValue("@methodname", t.MethodName);
+                query.Parameters.AddWithValue("@startline", t.StartLine);
+                query.Parameters.AddWithValue("@endline", t.EndLine);
+                query.Parameters.AddWithValue("@bug_id", t.BugId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -215,28 +215,28 @@ namespace Bug_Tracker.DAO
         public List<Bug> getAllBugs()
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
             List<Bug> bugList = new List<Bug>();
             Bug bug = null;
             SourceCode code = null;
             BugImage image = null;
-            SourceControl sourceControl = null;
+            SourceLink sourceControl = null;
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "SELECT * FROM table_bug b JOIN table_code c ON b.bug_id = c.bug_id JOIN table_image i ON b.bug_id = i.bug_id JOIN table_source_control sc ON sc.bug_id = i.bug_id WHERE bug_status = 0 ;";
-                sql.Prepare();
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "SELECT * FROM table_bug b JOIN table_code c ON b.bug_id = c.bug_id JOIN table_image i ON b.bug_id = i.bug_id JOIN table_source_control sc ON sc.bug_id = i.bug_id WHERE bug_status = 0 ;";
+                query.Prepare();
 
-                using (SqlDataReader reader = sql.ExecuteReader())
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while(reader.Read())
                     {
                         bug = new Bug();
                         code = new SourceCode();
                         image = new BugImage();
-                        sourceControl = new SourceControl();
+                        sourceControl = new SourceLink();
 
                         bug.BugId = Convert.ToInt32(reader["bug_id"]);
                         bug.ProjectName = Convert.ToString(reader["project_name"]);
@@ -294,29 +294,29 @@ namespace Bug_Tracker.DAO
         {
             connection.Close();
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
             List<Bug> bugList = new List<Bug>();
             Bug bug = null;
             SourceCode code = null;
             BugImage image = null;
-            SourceControl sourceControl = null;
+            SourceLink sourceControl = null;
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "SELECT * FROM table_bug b JOIN table_code c ON b.bug_id = c.bug_id JOIN table_image i ON b.bug_id = i.bug_id JOIN table_source_control sc ON sc.bug_id = i.bug_id WHERE bug_status = 0 AND b.code_author = @id;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@id", id);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "SELECT * FROM table_bug b JOIN table_code c ON b.bug_id = c.bug_id JOIN table_image i ON b.bug_id = i.bug_id JOIN table_source_control sc ON sc.bug_id = i.bug_id WHERE bug_status = 0 AND b.code_author = @id;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@id", id);
 
-                using (SqlDataReader reader = sql.ExecuteReader())
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         bug = new Bug();
                         code = new SourceCode();
                         image = new BugImage();
-                        sourceControl = new SourceControl();
+                        sourceControl = new SourceLink();
 
                         bug.BugId = Convert.ToInt32(reader["bug_id"]);
                         bug.ProjectName = Convert.ToString(reader["project_name"]);
@@ -373,24 +373,24 @@ namespace Bug_Tracker.DAO
         public void BugFixed(int bugId)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "UPDATE table_bug SET bug_status = @bug_status WHERE bug_id=@bug_id;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@bug_status", "1");
-                sql.Parameters.AddWithValue("@bug_id", bugId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "UPDATE table_bug SET bug_status = @bug_status WHERE bug_id=@bug_id;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@bug_status", "1");
+                query.Parameters.AddWithValue("@bug_id", bugId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw new Exception(ex.Message);
             }
             finally

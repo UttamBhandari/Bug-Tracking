@@ -16,21 +16,21 @@ namespace Bug_Tracker.DAO
         public bool Delete(int id)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "DELETE FROM table_project_programmer WHERE programmer_id = @projectPragrammerID";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@projectPragrammerID", id);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "DELETE FROM table_project_programmer WHERE programmer_id = @projectPragrammerID";
+                query.Prepare();
+                query.Parameters.AddWithValue("@projectPragrammerID", id);
 
-                int res = sql.ExecuteNonQuery();
+                int res = query.ExecuteNonQuery();
 
                 if (res > 0)
                 {
-                    trans.Commit();
+                    transaction.Commit();
                     return true;
                 } else
                 {
@@ -39,7 +39,7 @@ namespace Bug_Tracker.DAO
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -55,10 +55,10 @@ namespace Bug_Tracker.DAO
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.CommandText = "SELECT * FROM table_project_programmer;";
-                sql.Prepare();
-                using (SqlDataReader reader = sql.ExecuteReader())
+                SqlCommand query = new SqlCommand(null, connection);
+                query.CommandText = "SELECT * FROM table_project_programmer;";
+                query.Prepare();
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -90,25 +90,25 @@ namespace Bug_Tracker.DAO
         public void Insert(ProjectProgrammer t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "INSERT INTO table_project_programmer VALUES(@projectId, @programmerId, @adminId)";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@projectId", t.ProjectId);
-                sql.Parameters.AddWithValue("@programmerId", t.ProgrammerId);
-                sql.Parameters.AddWithValue("@adminId", Program.adminId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "INSERT INTO table_project_programmer VALUES(@projectId, @programmerId, @adminId)";
+                query.Prepare();
+                query.Parameters.AddWithValue("@projectId", t.ProjectId);
+                query.Parameters.AddWithValue("@programmerId", t.ProgrammerId);
+                query.Parameters.AddWithValue("@adminId", Program.adminId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -129,11 +129,11 @@ namespace Bug_Tracker.DAO
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.CommandText = "SELECT * FROM table_project_programmer WHERE project_id=@projectId;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@projectId", projectId);
-                using (SqlDataReader reader = sql.ExecuteReader())
+                SqlCommand query = new SqlCommand(null, connection);
+                query.CommandText = "SELECT * FROM table_project_programmer WHERE project_id=@projectId;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@projectId", projectId);
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while (reader.Read())
                     {

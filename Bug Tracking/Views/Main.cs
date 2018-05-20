@@ -33,13 +33,13 @@ namespace Bug_Tracker.Views
             InitializeComponent();
         }
 
-        private void ShowNewForm(object sender, EventArgs e)
+        /*private void ShowNewForm(object sender, EventArgs e)
         {
             Form childForm = new Form();
             childForm.MdiParent = this;
             childForm.Text = "Window " + childFormNumber++;
             childForm.Show();
-        }
+        }*/
 
         private void OpenFile(object sender, EventArgs e)
         {
@@ -221,13 +221,91 @@ namespace Bug_Tracker.Views
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripSeparator5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void allBugsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new Bugs().Show();
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Control | Keys.V))
+            {
+                try
+                {
+                    (sender as TextBox).Paste();
+                    link.Text = textBox1.Text;
+                }
+                catch (NullReferenceException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        private void fastColoredTextBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(link.Text);
+        }
+
+        private void fastColoredTextBox1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editMenu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripLabel1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(link.Text);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
             if (string.IsNullOrEmpty(comboBox1.SelectedItem.ToString()) || string.IsNullOrEmpty(textBox2.Text) || string.IsNullOrEmpty(textBox3.Text) || string.IsNullOrEmpty(textBox4.Text) || string.IsNullOrEmpty(textBox5.Text) || string.IsNullOrEmpty(textBox1.Text) || string.IsNullOrEmpty(textBox6.Text) || string.IsNullOrEmpty(textBox7.Text))
             {
                 MessageBox.Show("You must add all project information");
-            } else if(string.IsNullOrEmpty(fastColoredTextBox1.Text))
+            }
+            else if (string.IsNullOrEmpty(fastColoredTextBox1.Text))
             {
                 MessageBox.Show("Code field cann't be null");
-            } else
+            }   
+            else
             {
                 //bug
                 Bug bug = new Bug
@@ -320,7 +398,7 @@ namespace Bug_Tracker.Views
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 ////Link
 
-                SourceControl sourceControl = new SourceControl
+                Model.SourceLink sourceControl = new Model.SourceLink
                 {
                     Link = textBox1.Text,
                     StartLine = Convert.ToInt32(textBox6.Text),
@@ -328,13 +406,14 @@ namespace Bug_Tracker.Views
                     BugId = bug.BugId
                 };
 
-                SourceControlDAO sourceControlDAO = new SourceControlDAO();
-                
+                DAO.SourceControlDAO sourceControlDAO = new DAO.SourceControlDAO();
+
                 try
                 {
                     sourceControlDAO.Insert(sourceControl);
                     inserted3 = true;
-                } catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
@@ -343,7 +422,8 @@ namespace Bug_Tracker.Views
                 if (inserted && inserted1 && inserted2)
                 {
                     MessageBox.Show("Added");
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Unable to add");
                 }
@@ -351,58 +431,18 @@ namespace Bug_Tracker.Views
             }
         }
 
-        private void toolStripSeparator5_Click(object sender, EventArgs e)
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void allBugsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new Bugs().Show();
+            new UserLogin().Show();
+            this.Hide();
         }
 
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == (Keys.Control | Keys.V))
-            {
-                try
-                {
-                    (sender as TextBox).Paste();
-                    link.Text = textBox1.Text;
-                }
-                catch (NullReferenceException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-        }
-
-        private void fastColoredTextBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-            
-        }
-
-        private void link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start(link.Text);
-        }
-
-        private void fastColoredTextBox1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void editMenu_Click(object sender, EventArgs e)
+        private void toolsMenu_Click(object sender, EventArgs e)
         {
 
         }

@@ -16,24 +16,24 @@ namespace Bug_Tracker.DAO
         public bool Delete(int id)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "DELETE FROM table_code WHERE bug_id=@bugId";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@bugId", id);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "DELETE FROM table_code WHERE bug_id=@bugId";
+                query.Prepare();
+                query.Parameters.AddWithValue("@bugId", id);
 
-                sql.ExecuteNonQuery();
-                trans.Commit();
+                query.ExecuteNonQuery();
+                transaction.Commit();
 
                 return true;
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw new Exception(ex.Message);
             }
             finally
@@ -55,26 +55,26 @@ namespace Bug_Tracker.DAO
         public void Insert(SourceCode t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "INSERT INTO table_code VALUES(@filepath, @filename, @plan, @bug_id)";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@filepath", t.CodeFilePath);
-                sql.Parameters.AddWithValue("@filename", t.CodeFileName);
-                sql.Parameters.AddWithValue("@plan", t.ProgrammingLanguage);
-                sql.Parameters.AddWithValue("@bug_id", t.BugId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "INSERT INTO table_code VALUES(@filepath, @filename, @plan, @bug_id)";
+                query.Prepare();
+                query.Parameters.AddWithValue("@filepath", t.CodeFilePath);
+                query.Parameters.AddWithValue("@filename", t.CodeFileName);
+                query.Parameters.AddWithValue("@plan", t.ProgrammingLanguage);
+                query.Parameters.AddWithValue("@bug_id", t.BugId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally

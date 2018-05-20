@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace Bug_Tracker.Views
 {
-    public partial class SymptonsAndAssign : Form
+    public partial class Symptoms : Form
     {
         //add button 1
         //update butto 2
         int id = 0;
         private int programmerId = 0;
-        public SymptonsAndAssign()
+        public Symptoms()
         {
             InitializeComponent();
             button4.Hide();
@@ -198,6 +198,11 @@ namespace Bug_Tracker.Views
             }
 
             
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

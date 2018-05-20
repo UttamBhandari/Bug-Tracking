@@ -102,7 +102,7 @@
     <Compile Include="Model\Programmer.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Model\ProjectProgrammer.cs" />
-    <Compile Include="Model\SourceControl.cs" />
+    <Compile Include="Model\SourceLink.cs" />
     <Compile Include="Model\Tester.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

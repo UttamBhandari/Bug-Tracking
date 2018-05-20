@@ -25,10 +25,10 @@ namespace Bug_Tracker.DAO
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.CommandText = "SELECT * FROM table_programmer;";
-                sql.Prepare();
-                using (SqlDataReader reader = sql.ExecuteReader())
+                SqlCommand query = new SqlCommand(null, connection);
+                query.CommandText = "SELECT * FROM table_programmer;";
+                query.Prepare();
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -59,11 +59,11 @@ namespace Bug_Tracker.DAO
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.CommandText = "SELECT * FROM table_programmer WHERE programmer_id=@programmerId;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@programmerId", id);
-                using (SqlDataReader reader = sql.ExecuteReader())
+                SqlCommand query = new SqlCommand(null, connection);
+                query.CommandText = "SELECT * FROM table_programmer WHERE programmer_id=@programmerId;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@programmerId", id);
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -92,25 +92,25 @@ namespace Bug_Tracker.DAO
         public void Insert(Programmer t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
             
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "INSERT INTO table_programmer VALUES(@fullName, @username, @password)";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@fullName", t.FullName);
-                sql.Parameters.AddWithValue("@username", t.Username);
-                sql.Parameters.AddWithValue("@password", t.Password);
-                
-                sql.ExecuteNonQuery();
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "INSERT INTO table_programmer VALUES(@fullName, @username, @password)";
+                query.Prepare();
+                query.Parameters.AddWithValue("@fullName", t.FullName);
+                query.Parameters.AddWithValue("@username", t.Username);
+                query.Parameters.AddWithValue("@password", t.Password);
 
-                trans.Commit();
+                query.ExecuteNonQuery();
+
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -127,24 +127,24 @@ namespace Bug_Tracker.DAO
         public int IsLogin(string username, string password)
         {
             connection.Open();
-            SqlTransaction trans = null;
+            SqlTransaction transaction = null;
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "SELECT * FROM table_programmer WHERE username=@username AND password=@password;SELECT SCOPE_IDENTITY()"; 
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@username", username);
-                sql.Parameters.AddWithValue("@password", password);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "SELECT * FROM table_programmer WHERE username=@username AND password=@password;SELECT SCOPE_IDENTITY()";
+                query.Prepare();
+                query.Parameters.AddWithValue("@username", username);
+                query.Parameters.AddWithValue("@password", password);
 
-                int id = Convert.ToInt32(sql.ExecuteScalar());
+                int id = Convert.ToInt32(query.ExecuteScalar());
 
                 return id;
                 //trans.Commit();
             } catch(SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             } finally
             {

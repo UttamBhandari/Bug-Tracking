@@ -8,31 +8,31 @@ using System.Threading.Tasks;
 
 namespace Bug_Tracker.DAO
 {
-    class SourceControlDAO : GenericDAO<SourceControl>
+    class SourceControlDAO : GenericDAO<SourceLink>
     {
         private SqlConnection connection = new DBConnection().GetConnection();
 
         public bool Delete(int id)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "DELETE FROM table_source_control WHERE bug_id=@bugId";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@bugId", id);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "DELETE FROM table_source_control WHERE bug_id=@bugId";
+                query.Prepare();
+                query.Parameters.AddWithValue("@bugId", id);
 
-                sql.ExecuteNonQuery();
-                trans.Commit();
+                query.ExecuteNonQuery();
+                transaction.Commit();
 
                 return true;
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw new Exception(ex.Message);
             }
             finally
@@ -41,39 +41,39 @@ namespace Bug_Tracker.DAO
             }
         }
 
-        public List<SourceControl> GetAll()
+        public List<SourceLink> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public SourceControl GetById(int id)
+        public SourceLink GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(SourceControl t)
+        public void Insert(SourceLink t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "INSERT INTO table_source_control VALUES(@link, @start_line, @end_line, @bug_id)";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@link", t.Link);
-                sql.Parameters.AddWithValue("@start_line", t.StartLine);
-                sql.Parameters.AddWithValue("@end_line", t.EndLine);
-                sql.Parameters.AddWithValue("@bug_id", t.BugId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "INSERT INTO table_source_control VALUES(@link, @start_line, @end_line, @bug_id)";
+                query.Prepare();
+                query.Parameters.AddWithValue("@link", t.Link);
+                query.Parameters.AddWithValue("@start_line", t.StartLine);
+                query.Parameters.AddWithValue("@end_line", t.EndLine);
+                query.Parameters.AddWithValue("@bug_id", t.BugId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -82,29 +82,29 @@ namespace Bug_Tracker.DAO
             }
         }
 
-        public void Update(SourceControl t)
+        public void Update(SourceLink t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "UPDATE table_source_control SET link = @link, start_line = @start_line, end_line = @end_line WHERE bug_id = @bug_id;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@link", t.Link);
-                sql.Parameters.AddWithValue("@start_line", t.StartLine);
-                sql.Parameters.AddWithValue("@end_line", t.EndLine);
-                sql.Parameters.AddWithValue("@bug_id", t.BugId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "UPDATE table_source_control SET link = @link, start_line = @start_line, end_line = @end_line WHERE bug_id = @bug_id;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@link", t.Link);
+                query.Parameters.AddWithValue("@start_line", t.StartLine);
+                query.Parameters.AddWithValue("@end_line", t.EndLine);
+                query.Parameters.AddWithValue("@bug_id", t.BugId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally

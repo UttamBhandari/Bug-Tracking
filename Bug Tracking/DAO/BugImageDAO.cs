@@ -16,24 +16,24 @@ namespace Bug_Tracker.DAO
         public bool Delete(int id)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "DELETE FROM table_image WHERE bug_id=@bugId";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@bugId", id);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "DELETE FROM table_image WHERE bug_id=@bugId";
+                query.Prepare();
+                query.Parameters.AddWithValue("@bugId", id);
 
-                sql.ExecuteNonQuery();
-                trans.Commit();
+                query.ExecuteNonQuery();
+                transaction.Commit();
 
                 return true;
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw new Exception(ex.Message);
             }
             finally
@@ -55,25 +55,25 @@ namespace Bug_Tracker.DAO
         public void Insert(BugImage t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "INSERT INTO table_image VALUES(@filepath, @filename, @bugid)";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@filepath", t.ImagePath);
-                sql.Parameters.AddWithValue("@filename", t.ImageName);
-                sql.Parameters.AddWithValue("@bugid", t.BugId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "INSERT INTO table_image VALUES(@filepath, @filename, @bugid)";
+                query.Prepare();
+                query.Parameters.AddWithValue("@filepath", t.ImagePath);
+                query.Parameters.AddWithValue("@filename", t.ImageName);
+                query.Parameters.AddWithValue("@bugid", t.BugId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -85,24 +85,24 @@ namespace Bug_Tracker.DAO
         public void Update(BugImage t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "UPDATE table_image SET image_name = @filename WHERE image_id = @imageId;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@filename", t.ImageName);
-                sql.Parameters.AddWithValue("@imageId", t.ImageId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "UPDATE table_image SET image_name = @filename WHERE image_id = @imageId;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@filename", t.ImageName);
+                query.Parameters.AddWithValue("@imageId", t.ImageId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally

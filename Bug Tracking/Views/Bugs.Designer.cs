@@ -53,6 +53,10 @@ namespace Bug_Tracker.Views
             this.panelBugs.Name = "panelBugs";
             this.panelBugs.Size = new System.Drawing.Size(561, 567);
             this.panelBugs.TabIndex = 0;
+            this.panelBugs.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBugs_Paint);
+            // 
+            // label1
+            // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(177, 17);

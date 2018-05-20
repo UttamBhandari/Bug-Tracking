@@ -29,11 +29,11 @@ namespace Bug_Tracker.DAO
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.CommandText = "SELECT * FROM table_bug_information WHERE bug_id=@bug_id;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@bug_id", id);
-                using (SqlDataReader reader = sql.ExecuteReader())
+                SqlCommand query = new SqlCommand(null, connection);
+                query.CommandText = "SELECT * FROM table_bug_information WHERE bug_id=@bug_id;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@bug_id", id);
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -63,25 +63,25 @@ namespace Bug_Tracker.DAO
         public void Insert(BugInformation t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "INSERT INTO table_bug_information VALUES(@symptons, @cause, @bug_id)";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@symptons", t.Symtons);
-                sql.Parameters.AddWithValue("@cause", t.Cause);
-                sql.Parameters.AddWithValue("@bug_id", t.BugId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "INSERT INTO table_bug_information VALUES(@symptons, @cause, @bug_id)";
+                query.Prepare();
+                query.Parameters.AddWithValue("@symptons", t.Symtons);
+                query.Parameters.AddWithValue("@cause", t.Cause);
+                query.Parameters.AddWithValue("@bug_id", t.BugId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -93,25 +93,25 @@ namespace Bug_Tracker.DAO
         public void Update(BugInformation t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "UPDATE table_bug_information SET symptons = @symptons, cause = @cause WHERE bug_id = @bug_id";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@symptons", t.Symtons);
-                sql.Parameters.AddWithValue("@cause", t.Cause);
-                sql.Parameters.AddWithValue("@bug_id", t.BugId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "UPDATE table_bug_information SET symptons = @symptons, cause = @cause WHERE bug_id = @bug_id";
+                query.Prepare();
+                query.Parameters.AddWithValue("@symptons", t.Symtons);
+                query.Parameters.AddWithValue("@cause", t.Cause);
+                query.Parameters.AddWithValue("@bug_id", t.BugId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally

@@ -19,12 +19,12 @@ namespace Bug_Tracker.DAO
             connection.Open();
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.CommandText = "DELETE FROM table_project WHERE project_id=@projectId;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@projectId", id);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.CommandText = "DELETE FROM table_project WHERE project_id=@projectId;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@projectId", id);
 
-                int res = sql.ExecuteNonQuery();
+                int res = query.ExecuteNonQuery();
 
                 if (res > 0)
                 {
@@ -48,12 +48,12 @@ namespace Bug_Tracker.DAO
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.CommandText = "SELECT * FROM table_project WHERE admin_id=@adminId;";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@adminId", Program.adminId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.CommandText = "SELECT * FROM table_project WHERE admin_id=@adminId;";
+                query.Prepare();
+                query.Parameters.AddWithValue("@adminId", Program.adminId);
 
-                using (SqlDataReader reader = sql.ExecuteReader())
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while (reader.Read())
                     {
@@ -86,24 +86,24 @@ namespace Bug_Tracker.DAO
         public void Insert(Project t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "INSERT INTO table_project VALUES(@projectName, @adminId)";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@projectName", t.ProjectName);
-                sql.Parameters.AddWithValue("@adminId", Program.adminId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "INSERT INTO table_project VALUES(@projectName, @adminId)";
+                query.Prepare();
+                query.Parameters.AddWithValue("@projectName", t.ProjectName);
+                query.Parameters.AddWithValue("@adminId", Program.adminId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -115,24 +115,24 @@ namespace Bug_Tracker.DAO
         public void Update(Project t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "UPDATE table_project SET project_name = @projectName WHERE project_id = @projectId";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@projectName", t.ProjectName);
-                sql.Parameters.AddWithValue("@projectId", t.ProjectId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "UPDATE table_project SET project_name = @projectName WHERE project_id = @projectId";
+                query.Prepare();
+                query.Parameters.AddWithValue("@projectName", t.ProjectName);
+                query.Parameters.AddWithValue("@projectId", t.ProjectId);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -148,12 +148,12 @@ namespace Bug_Tracker.DAO
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.CommandText = "SELECT pr.project_name FROM table_project pr JOIN table_project_programmer pp ON pr.project_id = pp.project_id JOIN table_programmer pro ON pp.programmer_id = pro.programmer_id WHERE pro.programmer_id = @userId ";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@userId", UserLogin.userId);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.CommandText = "SELECT pr.project_name FROM table_project pr JOIN table_project_programmer pp ON pr.project_id = pp.project_id JOIN table_programmer pro ON pp.programmer_id = pro.programmer_id WHERE pro.programmer_id = @userId ";
+                query.Prepare();
+                query.Parameters.AddWithValue("@userId", UserLogin.userId);
 
-                using (SqlDataReader reader = sql.ExecuteReader())
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while (reader.Read())
                     {

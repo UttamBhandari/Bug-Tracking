@@ -71,5 +71,10 @@ namespace Bug_Tracker.Views
         {
 
         }
+
+        private void panelBugs_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

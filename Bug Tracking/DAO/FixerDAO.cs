@@ -29,25 +29,25 @@ namespace Bug_Tracker.DAO
         public void Insert(Fixer t)
         {
             connection.Open();
-            SqlTransaction trans = connection.BeginTransaction();
+            SqlTransaction transaction = connection.BeginTransaction();
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.Transaction = trans;
-                sql.CommandText = "INSERT INTO table_fixer VALUES(@fixed_by, @bug_id, @fixed_date)";
-                sql.Prepare();
-                sql.Parameters.AddWithValue("@fixed_by", t.FixedBy);
-                sql.Parameters.AddWithValue("@bug_id", t.BugId);
-                sql.Parameters.AddWithValue("@fixed_date", DateTime.Now);
+                SqlCommand query = new SqlCommand(null, connection);
+                query.Transaction = transaction;
+                query.CommandText = "INSERT INTO table_fixer VALUES(@fixed_by, @bug_id, @fixed_date)";
+                query.Prepare();
+                query.Parameters.AddWithValue("@fixed_by", t.FixedBy);
+                query.Parameters.AddWithValue("@bug_id", t.BugId);
+                query.Parameters.AddWithValue("@fixed_date", DateTime.Now);
 
-                sql.ExecuteNonQuery();
+                query.ExecuteNonQuery();
 
-                trans.Commit();
+                transaction.Commit();
             }
             catch (SqlException ex)
             {
-                trans.Rollback();
+                transaction.Rollback();
                 throw ex;
             }
             finally
@@ -73,11 +73,11 @@ namespace Bug_Tracker.DAO
 
             try
             {
-                SqlCommand sql = new SqlCommand(null, connection);
-                sql.CommandText = "SELECT f.bug_id, f.fixed_date, p.full_name FROM table_programmer p JOIN table_fixer f ON p.programmer_id = f.fixed_by;";
-                sql.Prepare();
+                SqlCommand query = new SqlCommand(null, connection);
+                query.CommandText = "SELECT f.bug_id, f.fixed_date, p.full_name FROM table_programmer p JOIN table_fixer f ON p.programmer_id = f.fixed_by;";
+                query.Prepare();
 
-                using (SqlDataReader reader = sql.ExecuteReader())
+                using (SqlDataReader reader = query.ExecuteReader())
                 {
                     while (reader.Read())
                     {
